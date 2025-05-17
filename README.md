@@ -1,45 +1,33 @@
-# prompt: Gere um readme para esse meu colab
+# ✨ Resumidor Mágico de Texto e URL com Gemini Flash ✨
 
-# Resumo de Texto e URL com Gemini e Geração de PDF
+Cansado de textos longos e artigos intermináveis? Este Colab é a sua varinha mágica! Ele utiliza o poder do modelo Gemini 2.0 Flash da Google para transformar textos e conteúdos de URLs em resumos concisos e diretos. E a melhor parte? Ele ainda gera um PDF com o resumo para você salvar ou compartilhar!
 
-Este Colab permite gerar resumos concisos de textos ou conteúdos de URLs utilizando o modelo Gemini 2.0 Flash da Google AI e, opcionalmente, gerar um relatório em PDF com o resumo gerado.
+## 🚀 Como Usar essa Magia
 
-## Funcionalidades
+1.  **Obtenha sua Chave da API do Google GenAI:** Você precisa de uma chave para que o Gemini Flash funcione. Se ainda não tem, consiga uma [aqui](https://makersuite.google.com/app/apikey).
+2.  **Salve sua Chave de API:** No Google Colab, vá em "Secrets" (geralmente no menu à esquerda, ícone de cadeado 🔒). Adicione um novo segredo com o nome `GOOGLE_API_KEY` e cole sua chave lá. O código já está configurado para ler essa variável de ambiente.
+3.  **Escolha seu Modo:** Use o seletor mágica (`#@param`) para escolher entre "Texto" (se você quer colar um texto diretamente) ou "URL" (se você quer resumir o conteúdo de uma página da web).
+4.  **Execute as Células:** Rode as células do Colab sequencialmente.
+5.  **Insira o Texto ou URL:** Quando solicitado, insira o texto que deseja resumir ou a URL do artigo/página.
+6.  **Veja a Magia Acontecer:** O Colab irá processar seu input, gerar um resumo e, em seguida, criar um arquivo PDF chamado `relatorio_resumo.pdf` com o resumo gerado.
+7.  **Baixe seu PDF:** O arquivo PDF estará disponível no painel de arquivos do Colab (`/content/relatorio_resumo.pdf`).
 
-- Resumo de texto inserido diretamente pelo usuário.
-- Resumo do conteúdo de uma URL, extraindo o texto principal da página.
-- Geração de um arquivo PDF contendo o resumo.
+## 🛠️ O que Acontece Por Trás dos Panos?
 
-## Configuração
+Este Colab faz o seguinte:
 
-1. **Obtenha uma chave de API da Google AI:** Você precisará de uma chave de API para usar o modelo Gemini. Siga as instruções na documentação da Google AI para obter uma chave.
-2. **Configure a chave de API no Google Colab:**
-   - No menu lateral, clique no ícone de chave (Secrets).
-   - Clique em "+ New secret".
-   - No campo "Name", digite `GOOGLE_API_KEY`.
-   - No campo "Value", cole sua chave de API da Google AI.
-   - Certifique-se de que a caixa de seleção "Notebook access" esteja marcada para este Colab.
+*   **Instala as bibliotecas necessárias:** `google-genai`, `requests`, `beautifulsoup4` e `fpdf`.
+*   **Autentica com a API do Google GenAI:** Usando sua chave secreta.
+*   **Define a função `resumir_texto`:** Que envia seu texto (ou o texto extraído de uma URL) para o modelo Gemini Flash para gerar o resumo.
+*   **Define a função `extrair_texto_url`:** Se você escolher o modo "URL", esta função baixa o conteúdo da página, remove scripts e estilos, e extrai o texto puro.
+*   **Define a função `gerar_pdf_relatorio`:** Pega o resumo gerado e cria um arquivo PDF formatado.
+*   **Usa um seletor mágico:** Para permitir que você escolha facilmente entre resumir texto ou URL.
 
-## Como usar
+## 📚 Bibliotecas Utilizadas
 
-1. **Execute as células de instalação de bibliotecas:** As primeiras células instalam as bibliotecas necessárias (`google-genai`, `requests`, `beautifulsoup4`, `fpdf`).
-2. **Execute a célula de configuração da API:** Esta célula configura sua chave de API.
-3. **Escolha o modo de geração:** Utilize a variável de formulário (`modo_geracao`) para selecionar entre "Texto" ou "URL".
-4. **Execute a célula principal:** Dependendo do modo selecionado:
-   - Se for "Texto", você será solicitado a inserir o texto a ser resumido.
-   - Se for "URL", você será solicitado a inserir a URL do artigo a ser resumido.
-5. **Visualize o resumo:** O resumo gerado será exibido na saída da célula.
-6. **PDF do relatório:** Um arquivo PDF chamado `relatorio_resumo.pdf` será gerado no ambiente do Colab, contendo o resumo. Você pode baixá-lo na seção de arquivos do Colab.
+*   `google-genai`: Para interagir com a API do Gemini Flash.
+*   `requests`: Para fazer requisições HTTP e baixar o conteúdo de URLs.
+*   `beautifulsoup4`: Para parsear o HTML das páginas web e extrair o texto.
+*   `fpdf`: Para gerar o arquivo PDF com o resumo.
 
-## Bibliotecas utilizadas
-
-- `google-genai`: Para interagir com os modelos da Google AI.
-- `requests`: Para fazer requisições HTTP e obter o conteúdo de URLs.
-- `beautifulsoup4`: Para parsear HTML e extrair texto de páginas web.
-- `fpdf`: Para gerar arquivos PDF.
-
-## Observações
-
-- A qualidade do resumo depende da complexidade do texto/URL e do modelo Gemini.
-- A extração de texto de URLs pode variar dependendo da estrutura do site.
-- O arquivo PDF será gerado no diretório `/content/`.
+Divirta-se resumindo! ✨
